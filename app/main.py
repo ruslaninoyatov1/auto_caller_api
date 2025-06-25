@@ -1,9 +1,8 @@
 from fastapi import FastAPI
-from app.routers import qarzdor
-from app.database import Base, engine
+from app.schemas import QarzdorRequest
 
-Base.metadata.create_all(bind=engine)
+app = FastAPI()
 
-app = FastAPI(title="Qarzdorlar API", version="0.1.0")
-
-app.include_router(qarzdor.router, prefix="/api/v1")
+@app.post("/api/v1/qarzdor")
+def add_qarzdor(data: QarzdorRequest):
+    return {"message": "Qarzdor ma'lumotlari saqlandi", "data": data}

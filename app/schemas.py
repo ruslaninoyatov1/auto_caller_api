@@ -2,6 +2,10 @@ from pydantic import BaseModel
 from typing import List, Optional
 from datetime import date
 
+class Aloqa(BaseModel):
+    phone: str
+    phone2: Optional[str] = None
+
 class Tolov(BaseModel):
     id: int
     sum: int
@@ -14,13 +18,9 @@ class QilinganTolov(BaseModel):
     sum: int
     date: date
     type: int
-    comment: str
+    comment: Optional[str] = None
 
-class Aloqa(BaseModel):
-    phone: str
-    phone2: Optional[str]
-
-class QarzdorCreate(BaseModel):
+class QarzdorRequest(BaseModel):
     qarzdorlik_mazmuni: str
     aloqa: Aloqa
     tolov_listi: List[Tolov]
